@@ -10,6 +10,23 @@
 #include <vector>
 #include <ctime>
 
+#define RESET   "\033[0m"
+#define BLACK   "\033[30m"      /* Black */
+#define RED     "\033[31m"      /* Red */
+#define GREEN   "\033[32m"      /* Green */
+#define YELLOW  "\033[33m"      /* Yellow */
+#define BLUE    "\033[34m"      /* Blue */
+#define MAGENTA "\033[35m"      /* Magenta */
+#define CYAN    "\033[36m"      /* Cyan */
+#define WHITE   "\033[37m"      /* White */
+#define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
+#define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
+#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
+#define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
+#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
+#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
+#define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
+
 std::string get_pretty_name();
 // std::string cmd_output(const char* cmd);
 void show_help_func();
@@ -53,9 +70,10 @@ int main(int argc, char* argv[])
     uname(&unameData);
 
     if (uname(&unameData) != 0) {
-        std::cerr << "uname() failed.\n";
+        std::cerr << RED << "uname() failed.\n";
     }
 
+    std::cout << BOLDCYAN;
     if (!is_env_null("USER"))
         std::cout << std::getenv("USER");
     else
@@ -65,22 +83,21 @@ int main(int argc, char* argv[])
     if (gethostname(hostname, HOST_NAME_MAX) == 0) {
         std::cout << hostname << '\n';
     } else {
-        std::cout << "Failed to get hostname\n";
+        std::cout << RED << "Failed to get hostname\n";
     }
 
-    std::cout << std::string(20, '-');
-    std::cout << '\n';
+    std::cout << WHITE << std::string(20, '-') << '\n';
     
-    std::cout << "OS: " << distro_name << '\n';
+    std::cout << BLUE << "OS: " << GREEN << distro_name << '\n';
     // cmd_output("uname -r") is less secure than uname() from sys/utsname.h
     // std::cout << "Kernel: Linux " << cmd_output("uname -r");
-    std::cout << "Kernel: Linux " << unameData.release << '\n';
-    std::cout << "Shell: ";
+    std::cout << BLUE "Kernel: " << GREEN << "Linux " << unameData.release << '\n';
+    std::cout << BLUE << "Shell: " << GREEN;
     if (!is_env_null("SHELL"))
         std::cout << std::getenv("SHELL") << '\n';
     else
-        std::cout << "Failed to get shell\n";
-    std::cout << "Uptime: ";
+        std::cout << RED << "Failed to get shell\n";
+    std::cout << BLUE << "Uptime: " << GREEN;
 
     if (sysinfo(&info) == 0) {
         int hours = info.uptime / 3600;
@@ -91,20 +108,20 @@ int main(int argc, char* argv[])
         std::cout << hours << "h" << minutes << "m" << seconds << "s\n";
     }
     
-    std::cout << "Terminal: ";
+    std::cout << BLUE << "Terminal: " << GREEN;
     if (!is_env_null("TERM"))
         std::cout << std::getenv("TERM") << '\n';
     else
-        std::cout << "Failed to get terminal\n";
-    std::cout << "DE/WM: ";
+        std::cout << RED << "Failed to get terminal\n";
+    std::cout << BLUE << "DE/WM: " << GREEN;
     if (!is_env_null("XDG_CURRENT_DESKTOP"))
         std::cout << std::getenv("XDG_CURRENT_DESKTOP") << '\n';
     else
-        std::cout << "Failed to get current desktop\n";
+        std::cout << RED << "Failed to get current desktop\n";
 
     // printing one of dumb jokes if joke flag is set.
     if (joke) {
-        std::cout << dumb_jokes[std::rand() % jokes_count] << '\n';
+        std::cout << YELLOW << dumb_jokes[std::rand() % jokes_count] << '\n';
     }
     
     return 0;
