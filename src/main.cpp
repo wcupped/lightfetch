@@ -57,7 +57,8 @@ int main(int argc, char* argv[])
         "Bailing out, you are on your own. Good luck",
         "try fastfetch instead",
         "i use lightfetch btw",
-        "don't mind using neofetch, it's outdated"
+        "don't mind using neofetch, it's outdated",
+        "The more if, then else elif"
     };
     
     constexpr size_t jokes_count = sizeof(dumb_jokes) / sizeof(dumb_jokes[0]);
