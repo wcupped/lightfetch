@@ -17,7 +17,7 @@ make
 
 And you can run executable from `build/` directory, but if you want to install it in your system, run:
 ```sh
-sudo make install
+doas make install
 ```
 
 Good luck using lightfetch!
