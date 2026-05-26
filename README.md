@@ -1,3 +1,6 @@
+# WARNING
+This project is deprecated, it's better version is at [wcupped/sucklessfetch](https://github.com/wcupped/sucklessfetch). I'll try to actively maintain it, thx.
+
 # Lightfetch - Lightweight alternative to Fastfetch
 This utility is specified to create Fastfetch lightweight alternative, the first version has only 115 lines of C++ code
 
